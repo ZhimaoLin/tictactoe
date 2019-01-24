@@ -130,13 +130,11 @@ public class Board {
         return winner;
     }
 
-    public Player getPlayerAtPos(int row, int col){
+    public Player getPlayerAtPos(int row, int col) {
         return board[row][col];
     }
 
     public int getMoveCount() {
-      return moveCount;
+        return moveCount;
     }
-
-
 }
