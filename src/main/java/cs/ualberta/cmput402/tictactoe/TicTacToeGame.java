@@ -12,9 +12,14 @@ import java.util.Scanner;
 public class TicTacToeGame {
 
     private Board board;
-    private int[] score = {0,0,0};  // X wins, O wins, Ties
+    private int[] score;  // X wins, O wins, Ties
 
     public TicTacToeGame(){
+        score = new int[] {0,0,0};
+        board = new Board();
+    }
+
+    public void resetBoard(){
         board = new Board();
     }
 
@@ -76,8 +81,26 @@ public class TicTacToeGame {
         printScore();
     }
 
+    private boolean promptNewGame() {
+        while (true) {
+            Scanner keyboardScanner = new Scanner(System.in);
+            System.out.println("Do you want to play another game (y/n)?");
+            String line = keyboardScanner.nextLine().toLowerCase();
+            if (line.contentEquals("y")) {
+                return true;
+            } else if (line.contentEquals("n")) {
+                printScore();
+                return false;
+            }
+        }
+    }
+
     public static void main(String args[]){
         TicTacToeGame game = new TicTacToeGame();
         game.playGame();
+        while (game.promptNewGame()) {
+            game.resetBoard();
+            game.playGame();
+        }
     }
 }
